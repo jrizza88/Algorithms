@@ -9,39 +9,9 @@ import argparse
 # edge cases! If only one number in loop, make sure to return price? perhaps no edge case needed here...
 
 ## make sure that value doesn't subtract to the right.. 
-
-# def find_max_profit(prices):
-
-#   for i in range(0, len(prices) - 1):
-#     current_min_price_so_far = i
-#     for j in range(current_min_price_so_far, len(prices)):
-     
-#       current_max_profit = max(prices)
-#       max_profit = current_max_profit
-
-#       # keep_prices_to_left = max_profit(prices[:j])
-
-#       # elim_prices_to_right = max_profit.remove(prices[j:])
-#       # max_profit.remove(prices[j:])
-#       prices[j:]
-#       print(f'the max profit is {max_profit}')
-
-
-#       # highest_price = max(prices)
-#       # highest_price.remove()
-#       print(f'max value = {max_profit}, here is the array {prices}')
-
-#       find_lowest_price = min(prices[j])
-
-#       if prices[current_min_price_so_far] < prices[find_lowest_price]:
-#         current_min_price_so_far = find_lowest_price
-#         print(f'find_lowest_price value {find_lowest_price}')
-#         print(f'maxprofit subtracts {max_profit} - find_lowest_price {find_lowest_price}')
-#         return max_profit - find_lowest_price
-
-#   return prices
-
+# prices = [10, 7, 5, 8, 11, 9]
 def find_max_profit(prices):
+
   if len(prices) <= 1:
     return 0
   # set the current max to subtract from current min
@@ -55,8 +25,9 @@ def find_max_profit(prices):
       cur_max = prices[i]
       max_profit = cur_max - cur_min
     elif prices[i] < cur_min:
-      print(f'current min: {cur_min}')
-      print(f'prices[i]: {prices[i]}')
+      print(f'current max: {cur_min}')
+      
+      print(f'prices[i]: (ELIF) {prices[i]}')
       cur_min = prices[i]
     # for j in range(start_value, len(prices)):
     #   profit_value = prices[j] - prices[i]
@@ -68,16 +39,20 @@ def find_max_profit(prices):
 
 
 
+
     #     print(f'profit value {profit_value}')
     #     return profit_value
   # pass
+  print(f'max profit: {max_profit}')
   return max_profit
+
+print(find_max_profit([10, 7, 5, 8, 11, 9]))
 # find_max_profit([10, 7, 5, 8, 11, 9])
       
-if __name__ == '__main__':
-  # This is just some code to accept inputs from the command line
-  parser = argparse.ArgumentParser(description='Find max profit from prices.')
-  parser.add_argument('integers', metavar='N', type=int, nargs='+', help='an integer price')
-  args = parser.parse_args()
+# if __name__ == '__main__':
+#   # This is just some code to accept inputs from the command line
+#   parser = argparse.ArgumentParser(description='Find max profit from prices.')
+#   parser.add_argument('integers', metavar='N', type=int, nargs='+', help='an integer price')
+#   args = parser.parse_args()
 
-  print("A profit of ${profit} can be made from the stock prices {prices}.".format(profit=find_max_profit(args.integers), prices=args.integers))
+#   print("A profit of ${profit} can be made from the stock prices {prices}.".format(profit=find_max_profit(args.integers), prices=args.integers))

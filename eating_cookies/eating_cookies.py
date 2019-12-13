@@ -1,45 +1,48 @@
 #!/usr/bin/python
 
 import sys
-# def eating_cookies(n, cache=None):
-#   # pass
-#   if n < 0:
-#     return 0
-#   elif n == 0 or n == 1:
-#     return 1
-#   else:
-#     val = eating_cookies(n - 1) + eating_cookies(n - 2) + eating_cookies(n - 3)
-#     print(f'value: {val}')
-#     return val
 
 # The cache parameter is here for if you want to implement
 # a solution that is more efficient than the naive 
 # recursive solution
+
 def eating_cookies(n, cache=None):
+  # cache = {}
   if n < 0:
     return 0
   elif n == 0 or n == 1:
+    # print(n)
     return 1
+  elif n == 2:
+    # print(n)
+    return 2
+  elif n == 3:
+    # print(n)
+    return 4
+  elif cache and cache[n] > 0:
+    return cache[n]
+  # if n in cache:
+  #   return cache[n]
   else:
-    cache = dict()
-    for n in cache:
-      return cache[n]
+    if not cache:
+      cache = {
+        i:0 
+        for i in range(n+1)
+      }
+      print('sccs', n)
+      return eating_cookies(n,cache)
     else:
       cache[n] = eating_cookies(n - 1, cache) + eating_cookies(n - 2, cache) + eating_cookies(n - 3, cache)
-      # cache[n] = val
-      print(f'{cache[n]}')
+      print(f'the cache[n] result: {cache[n]}')
       return cache[n]
-#     # try:
-    #   if cache[n] > 0:
-    # # if n in cache:
-    #   # print(f' first if statement...: {cache[n]}')
-    #     return cache[n]
-    # except:
-    #   val = eating_cookies(n - 1, cache[n]) + eating_cookies(n - 2, cache[n]) + eating_cookies(n - 3, cache[n])
-    #   cache[n] = val
-    #   return val
-
-
+      # cache[n] = result
+      # print(f'the cache[n] result: {cache[n]}')
+  return cache[n]
+print(eating_cookies(0), 1)
+print(eating_cookies(1), 1)
+print(eating_cookies(2), 2)
+print(eating_cookies(3), 3)
+print(eating_cookies(5), 13)
 
 if __name__ == "__main__":
   if len(sys.argv) > 1:
